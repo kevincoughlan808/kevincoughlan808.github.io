@@ -1,0 +1,11 @@
+title: "Kevin Coughlan's Blog"
+description: "A simple blog to journal my progress"
+url: "https://kevincoughlan808.github.io"
+baseurl: ""
+
+markdown: kramdown
+highlighter: rouge
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
