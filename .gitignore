@@ -20,3 +20,12 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# App data
+bitcoin_prices.csv
