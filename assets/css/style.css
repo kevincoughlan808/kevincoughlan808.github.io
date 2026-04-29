@@ -1,20 +1,277 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #fafaf8;
+  --surface:   #ffffff;
+  --border:    #e8e8e4;
+  --text:      #1a1a1a;
+  --muted:     #6b6b6b;
+  --accent:    #2563eb;
+  --accent-bg: #eff6ff;
+  --tag-bg:    #f0f0ec;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  margin: 40px;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
   line-height: 1.6;
+  font-size: 16px;
 }
 
+/* ── Layout ── */
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Header ── */
 header {
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 20px;
+  padding: 48px 0 32px;
+  border-bottom: 1px solid var(--border);
 }
 
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 22px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.header-text h1 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.header-text h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.header-text p {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+nav {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.nav-tab {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  transition: all 0.15s;
+  cursor: pointer;
+}
+
+.nav-tab:hover,
+.nav-tab.active {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-bg);
+}
+
+/* ── Main ── */
 main {
-  margin-top: 20px;
+  padding: 40px 0;
 }
 
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+/* ── Post list ── */
+.post-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 24px;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: box-shadow 0.15s, border-color 0.15s;
+  margin-bottom: 10px;
+}
+
+.post-card:hover {
+  border-color: #c0c0bb;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.post-card h2 {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  margin-bottom: 6px;
+}
+
+.post-card p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ── Post meta (shared between cards and post page) ── */
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.post-date {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.post-tag {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--tag-bg);
+  color: var(--muted);
+}
+
+/* Category colours — add more as needed */
+.post-tag.100-days-of-code { background: #ecfdf5; color: #059669; }
+.post-tag.projects          { background: #faf5ff; color: #7c3aed; }
+.post-tag.notes             { background: #fff7ed; color: #ea580c; }
+
+/* ── Individual post page ── */
+.post {
+  padding-top: 40px;
+}
+
+.post-header {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.post-title {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  line-height: 1.3;
+  margin-top: 10px;
+}
+
+.post-content {
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.post-content h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 32px 0 12px;
+}
+
+.post-content p {
+  margin-bottom: 16px;
+}
+
+.post-content ul, .post-content ol {
+  padding-left: 24px;
+  margin-bottom: 16px;
+}
+
+.post-content li {
+  margin-bottom: 6px;
+}
+
+.post-content code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 13px;
+  background: var(--tag-bg);
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+.post-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 32px 0;
+}
+
+.post-content em {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.post-back {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.post-back a {
+  font-size: 14px;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.post-back a:hover {
+  color: var(--text);
+}
+
+/* ── Footer ── */
 footer {
-  margin-top: 40px;
-  text-align: center;
-  color: #666;
+  border-top: 1px solid var(--border);
+  padding: 28px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.social-links {
+  display: flex;
+  gap: 16px;
+}
+
+.social-links a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.social-links a:hover {
+  color: var(--text);
 }

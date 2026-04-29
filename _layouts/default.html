@@ -4,18 +4,64 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ site.title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
-  <header>
-    <h1>{{ site.title }}</h1>
-    <p>{{ site.description }}</p>
-  </header>
-  <main>
-    {{ content }}
-  </main>
-  <footer>
-    <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
-  </footer>
+  <div class="container">
+
+    <header>
+      <div class="header-inner">
+        <div class="avatar">K</div>
+        <div class="header-text">
+          <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+          <p>{{ site.tagline }}</p>
+        </div>
+      </div>
+      <nav id="category-nav">
+        <a href="{{ '/' | relative_url }}" class="nav-tab active" data-category="all">All</a>
+        {% assign categories = site.posts | map: 'category' | compact | uniq | sort %}
+        {% for cat in categories %}
+          <a href="{{ '/' | relative_url }}" class="nav-tab" data-category="{{ cat }}">{{ cat }}</a>
+        {% endfor %}
+      </nav>
+    </header>
+
+    <main>
+      {{ content }}
+    </main>
+
+    <footer>
+      <span>&copy; {{ site.time | date: '%Y' }} {{ site.author }}</span>
+      <div class="social-links">
+        {% if site.social.github != "" %}<a href="https://github.com/{{ site.social.github }}">GitHub</a>{% endif %}
+        {% if site.social.twitter != "" %}<a href="https://twitter.com/{{ site.social.twitter }}">Twitter</a>{% endif %}
+        {% if site.social.linkedin != "" %}<a href="https://linkedin.com/in/{{ site.social.linkedin }}">LinkedIn</a>{% endif %}
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    // Category filtering
+    const tabs = document.querySelectorAll('.nav-tab');
+    const cards = document.querySelectorAll('.post-card');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', e => {
+        e.preventDefault();
+        const cat = tab.dataset.category;
+
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        cards.forEach(card => {
+          const match = cat === 'all' || card.dataset.category === cat;
+          card.style.display = match ? 'block' : 'none';
+        });
+      });
+    });
+  </script>
 </body>
 </html>

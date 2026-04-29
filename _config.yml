@@ -1,7 +1,15 @@
-title: "Kevin Coughlan's Blog"
+title: "Kevin Coughlan"
+tagline: "Building things and writing about it."
 description: "A simple blog to journal my progress"
 url: "https://kevincoughlan808.github.io"
 baseurl: ""
+
+author: Kevin Coughlan
+
+social:
+  github: kevincoughlan808
+  twitter: ""
+  linkedin: ""
 
 markdown: kramdown
 highlighter: rouge
