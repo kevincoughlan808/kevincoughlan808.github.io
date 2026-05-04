@@ -11,6 +11,8 @@ social:
   twitter: ""
   linkedin: ""
 
+future: true
+
 markdown: kramdown
 highlighter: rouge
 
